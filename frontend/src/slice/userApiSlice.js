@@ -1,3 +1,4 @@
+import EmailVerify from "../pages/EmailVerify";
 import apiSlice from "./apiSlice";
 
 const USER_URL = "/api/users";
@@ -18,6 +19,13 @@ const userApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
         credentials: "include",
+      }),
+    }),
+    verifyEmail: builder.query({
+      query: (token) => ({
+        url: `${USER_URL}/email-verify?token=${token}`,
+        method: "GET",
+        credentials:"include"
       }),
     }),
     logout: builder.mutation({
@@ -56,18 +64,18 @@ const userApiSlice = apiSlice.injectEndpoints({
         url: `${USER_URL}/remove`,
         method: "POST",
         body: data,
-        credentials:"include"
+        credentials: "include",
       }),
-      invalidatesTags:["BioLink"]
+      invalidatesTags: ["BioLink"],
     }),
-    editBioLinks:builder.mutation({
-      query:(data)=>({
-        url:`${USER_URL}/editlinks`,
-        method:"POST",
-        body:data,
-        credentials:"include"
+    editBioLinks: builder.mutation({
+      query: (data) => ({
+        url: `${USER_URL}/editlinks`,
+        method: "POST",
+        body: data,
+        credentials: "include",
       }),
-      invalidatesTags:["BioLink"]
+      invalidatesTags: ["BioLink"],
     }),
     getBioLink: builder.query({
       query: () => ({
@@ -77,13 +85,13 @@ const userApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["BioLink"],
     }),
-    getPublicBio:builder.query({
-      query:(username)=>({
-        url:`/${username}`,
-        method:"GET",
+    getPublicBio: builder.query({
+      query: (username) => ({
+        url: `/${username}`,
+        method: "GET",
       }),
-      providesTags:["BioLink"]
-    })
+      providesTags: ["BioLink"],
+    }),
   }),
 });
 
@@ -91,6 +99,7 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,
+  useVerifyEmailQuery,
   useCheckAuthQuery,
   useOnboardMutation,
   useUpdateUserSocialMutation,

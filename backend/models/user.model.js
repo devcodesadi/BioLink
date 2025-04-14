@@ -21,7 +21,11 @@ const userSchema=new mongoose.Schema(
         isOnboard:{
             type:Boolean,
             default:false
-        }
+        },
+        isVerified:{
+            type:Boolean,
+            default:false
+        },
     },
     {timestamps:true})
 

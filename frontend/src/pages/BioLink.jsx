@@ -20,7 +20,16 @@ function BioLink() {
       <div className="w-full max-w-sm h-[90vh] bg-white rounded-2xl shadow-lg p-6 flex flex-col">
         {/* Profile Section */}
         <div className="flex flex-col items-center text-center mb-6 shrink-0">
-          <div className="w-20 h-20 bg-gray-300 rounded-full mb-4" />
+        <img
+            src={
+              selectedPlatforms?.profilePic ||
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                selectedPlatforms?.name
+              )}&background=random&rounded=true`
+            }
+            alt={selectedPlatforms?.name}
+            className="w-20 h-20 rounded-full object-cover mb-4"
+          />
           <h1 className="text-xl font-semibold text-gray-800">{selectedPlatforms.name}</h1>
           <p className="text-sm text-gray-500">{selectedPlatforms.about}</p>
         </div>

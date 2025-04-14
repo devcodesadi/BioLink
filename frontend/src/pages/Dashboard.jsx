@@ -90,7 +90,7 @@ function Dashboard() {
           </div>
 
           {/* Add some padding at the bottom to ensure the last item is visible */}
-          <div className="pb-16"></div>
+          <div className="pb-30"></div>
         </div>
 
         {/* Column 2 - Selected Platform Info */}
@@ -132,7 +132,7 @@ function Dashboard() {
               </div>
             ))}
           </div>
-          <div className="pb-18"></div>
+          <div className="pb-60"></div>
         </div>
 
         {/* Column 3 - Preview / Actions (Fixed) */}

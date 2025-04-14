@@ -18,7 +18,7 @@ function Layout() {
     <main className="min-h-screen">
     <Outlet/>
     </main>
-    (!shouldHideLayout && <Footer/>)
+    {!shouldHideLayout && <Footer/>}
     </>
   )
 }

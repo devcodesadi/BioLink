@@ -1,5 +1,5 @@
 import express, { Router } from "express"
-import { isValid, userLogin, userLogOut, userRegister } from "../controller/auth.controller.js"
+import { isEmailVerified, isValid, userLogin, userLogOut, userRegister } from "../controller/auth.controller.js"
 import { getSocial } from "../controller/social.controller.js"
 import { editLinks, getBioLink, getPublicBioLink, removeSocial, updateSocial, userOnboard } from "../controller/userSocial.controller.js"
 import authToken from "../middlewares/auth.middleware.js"
@@ -12,6 +12,7 @@ const router =express.Router()
 
 
 router.post('/register',userRegister)
+router.get('/email-verify',isEmailVerified)
 router.post('/login' , userLogin)
 router.post('/logout', userLogOut)
 router.get('/isvalid', isValid)

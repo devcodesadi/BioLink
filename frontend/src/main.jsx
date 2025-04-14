@@ -14,6 +14,8 @@ import ProtectedRoute from './secure/ProtectedRoute.jsx'
 import Theme from './pages/Theme.jsx'
 import Onboarding from './pages/Onboarding.jsx'
 import PublicBioLink from './pages/PublicBioLink.jsx'
+import EmailVerify from './pages/EmailVerify.jsx'
+import EmailSuccess from './pages/EmailSuccess.jsx'
 
 
 
@@ -21,6 +23,8 @@ const route = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     <Route path='/' element={<Home />} />
     <Route path='/user/register' element={<Register />} />
+    <Route path='/user/email-sent' element={<EmailVerify />} />
+    <Route path='/user/verify-email' element={<EmailSuccess />} />
     <Route path='/user/login' element={<Login />} />
     <Route path='/:username' element={<PublicBioLink/>}/>
     <Route  element={<ProtectedRoute />}>

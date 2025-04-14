@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import User from "../models/user.model.js";
 import generateToken from "../utils/generateToken.js";
 import jwt from "jsonwebtoken";
+import { sendMail } from "../utils/mail.js";
 
 const userRegister = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -15,7 +16,20 @@ const userRegister = asyncHandler(async (req, res) => {
   const user = await User.create({ name, email, password });
 
   if (user) {
-    generateToken(res, user._id);
+    const emailVerificationToken = jwt.sign(
+      { userId: user._id },
+      process.env.SECRET_KEY,
+      { expiresIn: "15m" }
+    );
+    const verificationUrl = `http://localhost:5173/user/verify-email?token=${emailVerificationToken}`;
+    sendMail(
+      email,
+      "Account Verification",
+      `<h2>Hello ${name}</h2>
+      <p>Click the link below to verify your email:</p>
+      <a href="${verificationUrl}">Verify Email</a>
+      <p>This link will expire in 15 minutes.</p>`
+    );
     res.status(200).json({
       id: user._id,
       name: user.name,
@@ -26,6 +40,37 @@ const userRegister = asyncHandler(async (req, res) => {
     throw new Error("Invalid User Data");
   }
 });
+
+
+
+
+//@desc verify the email
+//@access public
+//@route /api/user/verify-email
+const isEmailVerified = asyncHandler(async (req, res) => {
+  const token = req.query.token;
+  if (!token) {
+    res.status(404);
+    throw new Errror(`Token not exist !Please SignIn again`);
+  }
+  const isTokenVerified = jwt.verify(token, process.env.SECRET_KEY);
+  if (isTokenVerified) {
+    generateToken(res, isTokenVerified.userId);
+    const user = await User.findById(isTokenVerified.userId);
+    user.isVerified = true;
+    await user.save();
+    res.status(200).json({ success: true, message: "Success" });
+  } else {
+    res.status(401);
+    throw new Error(`Token Expired! Please signIn again`);
+  }
+});
+
+
+
+
+
+
 
 //@desc user login
 //@route /api/user/login
@@ -128,4 +173,4 @@ const isValid = async (req, res) => {
   }
 };
 
-export { userRegister, userLogin, userLogOut, isValid };
+export { userRegister, userLogin, userLogOut, isValid, isEmailVerified };

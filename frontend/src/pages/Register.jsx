@@ -25,7 +25,7 @@ function Register() {
     try {
       const res = await register({ name, email, password }).unwrap();
       dispatch(setCredentials(res));
-      window.location.href = "/user/onboard";
+      navigate('/user/email-sent')
       setError("");
     } catch (error) {
       console.log(error);
