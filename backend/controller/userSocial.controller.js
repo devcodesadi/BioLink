@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import Social from "../models/social.model.js";
 import UserSocial from "../models/userSocial.model.js";
 import User from "../models/user.model.js";
+import Theme from "../models/theme.model.js";
 
 
 
@@ -25,6 +26,7 @@ const userOnboard = asyncHandler(async (req, res) => {
           baseUrl: findSocial.baseUrl,
         },
       ],
+      
     });
     const user = await User.findById(userId);
     user.isOnboard = true;
@@ -105,7 +107,7 @@ const removeSocial=asyncHandler(async(req,res)=>{
 
 const getBioLink = asyncHandler(async (req, res) => {
   const userId = req.userId;
-  const userBioLink = await UserSocial.findOne({ user: userId });
+  const userBioLink = await UserSocial.findOne({ user: userId }).populate("theme");
   if (userBioLink) {
     return res.status(200).send(userBioLink);
   } else {
@@ -156,15 +158,43 @@ const editLinks=asyncHandler(async(req,res)=>{
 
 
 
+
+const userSocialTheme=asyncHandler(async(req,res)=>{
+  const {themeId}=req.body
+  const userId=req.userId
+  if(!themeId){
+    res.status(401)
+    throw new Error(`Theme not Reeived`)
+  }
+
+  const findTheme=await Theme.findById(themeId)
+  if(!findTheme){
+    res.status(401)
+    throw new Error(`Theme not found`)
+  }
+  const getUserSocial=await UserSocial.findOne({user:userId})
+  if(!getUserSocial){
+    res.status(401)
+    throw new Error(`User not found`)
+  }
+  getUserSocial.theme=themeId
+  await getUserSocial.save()
+  res.status(200).json({success:true,})
+})
+
+
+
+
 const getPublicBioLink=asyncHandler(async(req,res)=>{
   const username=req.params.username
-  const getUserPublicBioLink=await UserSocial.findOne({username:new RegExp(`^${username}`)})
+  const getUserPublicBioLink=await UserSocial.findOne({username:new RegExp(`^${username}`)}).populate("theme")
   if(getUserPublicBioLink){
     const publicBioLinkData={
       name:getUserPublicBioLink.name,
       username:getUserPublicBioLink.username,
       about:getUserPublicBioLink.about,
-      socialLink:getUserPublicBioLink.userLinks
+      socialLink:getUserPublicBioLink.userLinks,
+      theme:getUserPublicBioLink.theme
 
     }
     return res.status(200).json(publicBioLinkData)
@@ -179,4 +209,9 @@ const getPublicBioLink=asyncHandler(async(req,res)=>{
 
 
 
-export { userOnboard, updateSocial, getBioLink ,removeSocial ,editLinks,getPublicBioLink};
+
+
+
+
+
+export { userOnboard, updateSocial, getBioLink ,removeSocial ,editLinks,userSocialTheme, getPublicBioLink};

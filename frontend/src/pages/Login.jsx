@@ -4,6 +4,7 @@ import { useLoginMutation } from "../slice/userApiSlice";
 import { setCredentials } from "../slice/authSlice";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+import groovyDoodle from "../assets/GroovySittingDoodle.svg"
 
 function Login() {
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ function Login() {
             <button
               disabled={isLoading}
               type="submit"
-              className="w-full px-6 py-3 bg-[#10B981] text-white font-semibold rounded-lg shadow-md hover:bg-[#059669] transition"
+              className="w-full px-6 py-3 bg-[#10B981] text-white font-semibold cursor-pointer rounded-lg shadow-md hover:bg-[#059669] transition"
             >
               LogIn
             </button>
@@ -90,9 +91,9 @@ function Login() {
         {/* Right Section: Image */}
         <div className="md:w-1/2 flex justify-center">
           <img
-            src="/assets/landing-image.png"
-            alt="Login Image"
-            className="w-full max-w-md object-cover rounded-lg shadow-lg"
+            src={groovyDoodle}
+            alt="groovyDoodle"
+            className="w-full max-w-md object-cover rounded-lg"
           />
         </div>
       </div>

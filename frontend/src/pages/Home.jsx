@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import selfieDoodle from "../assets/SelfieDoodle.svg";
+import BioLink_screenshot from "../assets/project_screenshot.png"
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
             Showcase your GitHub, Stack Overflow, Hashnode, Medium, and more — all in one simple, fast, and dev-friendly page.
           </p>
           <Link to="/user/register">
-            <button className="px-8 py-4 bg-[#10B981] hover:bg-[#059669] hover:text-white text-white rounded-full font-semibold shadow-lg transition-all duration-300">
+            <button className="px-8 py-4 bg-[#10B981] hover:bg-[#059669] hover:text-white text-white rounded-full font-semibold cursor-pointer shadow-lg transition-all duration-300">
               Get Started Free
             </button>
           </Link>
@@ -27,7 +28,7 @@ export default function Home() {
           <img
             src={selfieDoodle}
             alt="Dashboard preview"
-            className="rounded-xl shadow-xl max-w-full h-auto"
+            className="max-w-full h-auto"
           />
         </div>
       </div>
@@ -100,9 +101,20 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6 text-[#10B981]">See It in Action</h2>
           <p className="text-gray-600 mb-8">A sneak peek of your future BioLink page.</p>
-          <div className="w-full h-96 bg-[#F2F2F2] border-dashed border-4 border-gray-300 rounded-xl flex items-center justify-center">
-            <span className="text-gray-500">[Insert Screenshot or Demo GIF Here]</span>
-          </div>
+          
+          <div className="relative flex justify-center items-center">
+  <img
+    src={BioLink_screenshot}
+    alt="BioLink Preview"
+    className="rounded-xl shadow-2xl rotate-3 w-[50%] mx-auto"
+  />
+</div>
+
+
+
+
+
+
         </div>
       </div>
 

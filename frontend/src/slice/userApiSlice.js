@@ -77,6 +77,15 @@ const userApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["BioLink"],
     }),
+    updateSocialTheme:builder.mutation({
+      query:(data)=>({
+        url:`${USER_URL}/themeupdate`,
+        method:"POST",
+        body:data,
+        credentials:"include"
+      }),
+      invalidatesTags:["BioLink"]
+    }),
     getBioLink: builder.query({
       query: () => ({
         url: `${USER_URL}/getbiolink`,
@@ -105,6 +114,7 @@ export const {
   useUpdateUserSocialMutation,
   useEditBioLinksMutation,
   useRemoveSocialMutation,
+  useUpdateSocialThemeMutation,
   useGetBioLinkQuery,
   useGetPublicBioQuery,
 } = userApiSlice;

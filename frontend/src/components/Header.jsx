@@ -65,7 +65,7 @@ function Header() {
               <li>
                 <button
                   onClick={handleOnClick}
-                  className="px-4 py-2 border border-[#0A0A0A] text-[#0A0A0A] rounded-md hover:bg-[#059669] hover:text-white transition"
+                  className="px-4 py-2 cursor-pointer border border-[#0A0A0A] text-[#0A0A0A] rounded-md hover:bg-[#059669] hover:text-white transition"
                 >
                   Logout
                 </button>

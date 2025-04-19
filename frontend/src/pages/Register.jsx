@@ -4,6 +4,7 @@ import { useRegisterMutation } from "../slice/userApiSlice";
 import { setCredentials } from "../slice/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import LayingDoodle from "../assets/LayingDoodle.svg"
 
 function Register() {
   const dispatch = useDispatch();
@@ -101,9 +102,9 @@ function Register() {
         {/* Right Section: Image */}
         <div className="md:w-1/2 flex justify-center">
           <img
-            src="/assets/landing-image.png"
-            alt="Register Image"
-            className="w-full max-w-md object-cover rounded-lg shadow-lg"
+            src={LayingDoodle}
+            alt="LayingDoodle"
+            className="w-full max-w-md object-cover rounded-lg"
           />
         </div>
       </div>

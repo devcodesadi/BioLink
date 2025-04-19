@@ -1,10 +1,11 @@
 import React from "react";
 import { useFetchThemeQuery } from "../slice/themeApiSlice";
 import Loading from "./Loading";
+import { useUpdateSocialThemeMutation } from "../slice/userApiSlice";
 
 function Theme() {
   const { data, isLoading, isError } = useFetchThemeQuery();
-  console.log(data)
+  const [updateTheme]=useUpdateSocialThemeMutation();
 
   if (isLoading) {
     return <Loading />;
@@ -15,11 +16,28 @@ function Theme() {
     return <div className="text-center mt-10 text-red-500">Failed to load themes.</div>;
   }
 
+
+  const handleOnClick=async(themeId)=>{
+    const res=await updateTheme({themeId:themeId})
+    console.log(res)
+  }
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="flex flex-wrap justify-center items-start gap-8 p-6">
       {data.map((perTheme) => (
         <div
           key={perTheme._id}
+          onClick={()=>handleOnClick(perTheme._id)}
           className="min-h-[90vh] w-full max-w-sm rounded-2xl shadow-xl p-6 flex flex-col transition-transform transform hover:scale-[1.05] hover:shadow-2xl"
           style={{
             backgroundColor: perTheme.bgColor,

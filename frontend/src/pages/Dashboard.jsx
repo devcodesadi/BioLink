@@ -100,7 +100,7 @@ function Dashboard() {
               Selected Platform Info
             </h2>
             <Link to="/user/appearance">
-              <button className="bg-[#10B981] text-white px-4 py-2 rounded-md hover:bg-[#059669] transition">
+              <button className="bg-[#10B981] text-white px-4 py-2 rounded-md hover:bg-[#059669] cursor-pointer transition">
                 Theme
               </button>
             </Link>
@@ -156,7 +156,7 @@ function Dashboard() {
                     `http://localhost:5173/${selectedPlatforms?.username}`
                   );
                 }}
-                className="bg-[#10B981] text-white px-4 py-2 rounded-md hover:bg-[#059669] transition text-sm"
+                className="bg-[#10B981] cursor-pointer text-white px-4 py-2 rounded-md hover:bg-[#059669] transition text-sm"
               >
                 Copy
               </button>

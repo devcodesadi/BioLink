@@ -1,7 +1,7 @@
 import express, { Router } from "express"
 import { isEmailVerified, isValid, userLogin, userLogOut, userRegister } from "../controller/auth.controller.js"
 import { getSocial } from "../controller/social.controller.js"
-import { editLinks, getBioLink, getPublicBioLink, removeSocial, updateSocial, userOnboard } from "../controller/userSocial.controller.js"
+import { editLinks, getBioLink, getPublicBioLink, removeSocial, updateSocial, userOnboard, userSocialTheme } from "../controller/userSocial.controller.js"
 import authToken from "../middlewares/auth.middleware.js"
 import getTheme from "../controller/theme.controller.js"
 
@@ -22,6 +22,7 @@ router.post('/updatesocial',authToken,updateSocial)
 router.get('/getbiolink',authToken,getBioLink)
 router.post('/remove',authToken,removeSocial)
 router.post('/editlinks',authToken,editLinks)
+router.post('/themeupdate',authToken,userSocialTheme)
 router.get('/theme',getTheme)
 
 
