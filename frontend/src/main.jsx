@@ -26,12 +26,12 @@ const route = createBrowserRouter(createRoutesFromElements(
     <Route path='/user/email-sent' element={<EmailVerify />} />
     <Route path='/user/verify-email' element={<EmailSuccess />} />
     <Route path='/user/login' element={<Login />} />
-    <Route path='/:username' element={<PublicBioLink/>}/>
     <Route  element={<ProtectedRoute />}>
       <Route path='/user/onboard' element={<Onboarding />} />
       <Route path='/user/dashboard' element={<Dashboard />} />
       <Route path='/user/appearance' element={<Theme />} />
     </Route>
+    <Route path='/:username' element={<PublicBioLink/>}/>
   </Route>
 ))
 

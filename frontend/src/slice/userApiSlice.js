@@ -1,7 +1,7 @@
 import EmailVerify from "../pages/EmailVerify";
 import apiSlice from "./apiSlice";
 
-const USER_URL = "/api/users";
+const USER_URL = "/users";
 
 const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

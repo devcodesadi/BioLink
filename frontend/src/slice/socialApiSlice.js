@@ -1,13 +1,12 @@
 import apiSlice from "./apiSlice";
 
-const apiUrl="/api"
 
 
 const socialApiSlice=apiSlice.injectEndpoints({
     endpoints:(builder)=>({
         fetchSocial:builder.query({
             query:()=>({
-                url:`${apiUrl}/getsocial`,
+                url:`/getsocial`,
                 method:"GET",
                 credentials:"include"
             })
@@ -16,8 +15,6 @@ const socialApiSlice=apiSlice.injectEndpoints({
 
     })
 })
-
-
 
 
 export const {useFetchSocialQuery }=socialApiSlice;
