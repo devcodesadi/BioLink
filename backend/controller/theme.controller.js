@@ -6,7 +6,6 @@ import Theme from "../models/theme.model.js";
 const getTheme=asyncHandler(async(req,res)=>{
     
     const getAllTheme=await Theme.find()
-    console.log(getAllTheme)
     if(getAllTheme){
         return res.status(200).json(getAllTheme)
     }

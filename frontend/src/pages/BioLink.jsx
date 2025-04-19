@@ -23,7 +23,7 @@ function BioLink() {
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4"
-      style={{ backgroundColor: bgColor }}
+      
     >
       <div
         className="w-full max-w-sm h-[90vh] rounded-2xl shadow-lg p-6 flex flex-col"
