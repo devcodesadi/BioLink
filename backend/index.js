@@ -30,7 +30,7 @@ const port = process.env.PORT;
 
 app.use("/api/users", router);
 app.use("/api", router);
-app.use("/", publicRouter);
+app.use("/u", publicRouter);
 
 app.get("/{*any}", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
