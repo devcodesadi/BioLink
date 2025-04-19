@@ -10,4 +10,7 @@ const publicRouter=express.Router()
 publicRouter.get('/:clientusername',getPublicBioLink)
 
 
+console.log(`public router username`,username)
+
+
 export default publicRouter

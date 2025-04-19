@@ -187,6 +187,7 @@ const userSocialTheme=asyncHandler(async(req,res)=>{
 
 const getPublicBioLink=asyncHandler(async(req,res)=>{
   const username=req.params.username
+  console.log(`getpubliclink username`,username)
   const getUserPublicBioLink=await UserSocial.findOne({username:new RegExp(`^${username}`)}).populate("theme")
   if(getUserPublicBioLink){
     const publicBioLinkData={
