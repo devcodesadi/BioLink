@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["https://bio-link-cyan-two.vercel.app","http://localhost:5173"],
     credentials: true,
   })
 );
@@ -31,7 +31,6 @@ app.use('/api',router)
 app.use('/',publicRouter)
 
 app.use(notFound);
-
 app.use(errorHandler);
 
 app.listen(port, () => {
