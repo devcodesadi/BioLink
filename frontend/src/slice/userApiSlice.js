@@ -96,7 +96,7 @@ const userApiSlice = apiSlice.injectEndpoints({
     }),
     getPublicBio: builder.query({
       query: (username) => ({
-        url: `/${username}`,
+        url: `/u/${username}`,
         method: "GET",
       }),
       providesTags: ["BioLink"],
