@@ -104,7 +104,7 @@ const userLogOut = asyncHandler(async (req, res) => {
   res.clearCookie("jwt", {
     httpOnly: true,
     secure: true,
-    sameSite: "Lax",
+    sameSite: "None",
     path:"/"
   });
   console.log("logged out successfully")
