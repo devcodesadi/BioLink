@@ -6,7 +6,7 @@ const socialApiSlice=apiSlice.injectEndpoints({
     endpoints:(builder)=>({
         fetchSocial:builder.query({
             query:()=>({
-                url:`/getsocial`,
+                url:`/api/getsocial`,
                 method:"GET",
                 credentials:"include"
             })

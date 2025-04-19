@@ -8,7 +8,7 @@ const getThemeSlice=apiSlice.injectEndpoints({
     endpoints:(builder)=>({
         fetchTheme:builder.query({
             query:()=>({
-                url:`/theme`,
+                url:`/api/theme`,
                 method:"GET",
 
             })
