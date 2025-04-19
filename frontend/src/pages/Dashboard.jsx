@@ -147,13 +147,13 @@ function Dashboard() {
                 type="text"
                 id="userbiolinkurl"
                 readOnly
-                value={`http://localhost:5173/${selectedPlatforms?.username}`}
+                value={`https://biolink-v7u6.onrender.com/${selectedPlatforms?.username}`}
                 className="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-sm bg-gray-50 focus:outline-none"
               />
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `http://localhost:5173/${selectedPlatforms?.username}`
+                    `https://biolink-v7u6.onrender.com/${selectedPlatforms?.username}`
                   );
                 }}
                 className="bg-[#10B981] cursor-pointer text-white px-4 py-2 rounded-md hover:bg-[#059669] transition text-sm"
