@@ -103,9 +103,11 @@ const userLogin = asyncHandler(async (req, res) => {
 const userLogOut = asyncHandler(async (req, res) => {
   res.clearCookie("jwt", {
     httpOnly: true,
-    secure: process.env.NODE_ENV == "production",
-    sameSite: "lax",
+    secure: true,
+    sameSite: "Lax",
+    path:"/"
   });
+  console.log("logged out successfully")
   res.status(200).json({ success: true, message: "LogOut Successfully" });
 });
 
@@ -140,6 +142,7 @@ const profileUpdate = asyncHandler(async (req, res) => {
 const isValid = async (req, res) => {
   const token = req.cookies.jwt;
   if (!token) {
+    console.log('No token — should be unauthorized');
     return res.status(401).json({
       success: false,
       message: "Not authorized! Please login again.",
