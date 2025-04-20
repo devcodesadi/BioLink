@@ -39,12 +39,12 @@ function OnBoardSelectSocial() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-6">
       <div className="w-full max-w-2xl bg-white border border-gray-200 p-10 rounded-3xl shadow-lg">
-        <h2 className="text-3xl font-bold mb-6 text-[#0A0A0A] text-center">
-          Select Your Social Media
-        </h2>
-        <p className="text-center text-gray-500 text-base mb-8">
-          (Choose at least one)
-        </p>
+      <h2 className="text-3xl font-bold mb-6 text-[#0A0A0A] text-center">
+  Select a Social Media to Start
+</h2>
+<p className="text-center text-gray-500 text-base mb-8">
+  Choose one platform to link with your BioLink. You can add more later from your dashboard.
+</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {data.platform.map((social) => (

@@ -21,7 +21,7 @@ const userRegister = asyncHandler(async (req, res) => {
       process.env.SECRET_KEY,
       { expiresIn: "15m" }
     );
-    const verificationUrl = `http://localhost:5173/user/verify-email?token=${emailVerificationToken}`;
+    const verificationUrl = `https://biolink-v7u6.onrender.com/user/verify-email?token=${emailVerificationToken}`;
     sendMail(
       email,
       "Account Verification",
@@ -103,8 +103,8 @@ const userLogin = asyncHandler(async (req, res) => {
 const userLogOut = asyncHandler(async (req, res) => {
   res.clearCookie("jwt", {
     httpOnly: true,
-    secure: true,
-    sameSite: "None",
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Lax",
     path:"/"
   });
   console.log("logged out successfully")
