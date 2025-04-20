@@ -41,9 +41,6 @@ const userRegister = asyncHandler(async (req, res) => {
   }
 });
 
-
-
-
 //@desc verify the email
 //@access public
 //@route /api/user/verify-email
@@ -66,12 +63,6 @@ const isEmailVerified = asyncHandler(async (req, res) => {
   }
 });
 
-
-
-
-
-
-
 //@desc user login
 //@route /api/user/login
 //access public
@@ -80,6 +71,25 @@ const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const isUserExist = await User.findOne({ email });
+
+  if (isUserExist.isVerified === false) {
+    const emailVerificationToken = jwt.sign(
+      { userId: isUserExist._id },
+      process.env.SECRET_KEY,
+      { expiresIn: "15m" }
+    );
+    const verificationUrl = `https://biolink-v7u6.onrender.com/user/verify-email?token=${emailVerificationToken}`;
+    sendMail(
+      email,
+      "Account Verification",
+      `<h2>Hello ${isUserExist.name}</h2>
+      <p>Click the link below to verify your email:</p>
+      <a href="${verificationUrl}">Verify Email</a>
+      <p>This link will expire in 15 minutes.</p>`
+    );
+    res.status(401);
+    throw new Error(`Email not verified Please check your Mail`);
+  }
 
   if (isUserExist && (await isUserExist.matchPassword(password))) {
     res.clearCookie("jwt");
@@ -105,9 +115,9 @@ const userLogOut = asyncHandler(async (req, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "Lax",
-    path:"/"
+    path: "/",
   });
-  console.log("logged out successfully")
+  console.log("logged out successfully");
   res.status(200).json({ success: true, message: "LogOut Successfully" });
 });
 
@@ -142,7 +152,7 @@ const profileUpdate = asyncHandler(async (req, res) => {
 const isValid = async (req, res) => {
   const token = req.cookies.jwt;
   if (!token) {
-    console.log('No token — should be unauthorized');
+    console.log("No token — should be unauthorized");
     return res.status(401).json({
       success: false,
       message: "Not authorized! Please login again.",
