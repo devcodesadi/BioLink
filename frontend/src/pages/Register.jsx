@@ -25,11 +25,12 @@ function Register() {
 
     try {
       const res = await register({ name, email, password }).unwrap();
+      setError("")
       dispatch(setCredentials(res));
       navigate('/user/email-sent')
       setError("");
     } catch (error) {
-      console.log(error);
+      setError(error?.data?.message || "Registration Failed")
     }
   };
 

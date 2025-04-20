@@ -21,11 +21,13 @@ function Login() {
     }
     try {
       const res = await login({ email, password }).unwrap();
+      setError("")
       dispatch(setCredentials(res));
       setError("");
       window.location.href = "/user/dashboard";
     } catch (error) {
-      console.log(error);
+      setError(error?.data?.message || "Login Failed"
+      )
     }
   };
 
@@ -45,7 +47,7 @@ function Login() {
           {/* Error Message */}
           {error && (
             <p className="bg-red-100 text-red-700 p-3 rounded-lg mb-4">
-              {error.data.message}
+              {error}
             </p>
           )}
 
