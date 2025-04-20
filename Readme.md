@@ -78,5 +78,5 @@ Feel free to contribute, suggest improvements, or report issues.
 ## Author
 
 **Aditya Kumar**  
-Frontend Developer  
+Fullstack Developer (MERN)
 [GitHub](https://github.com/devcodesadi) | [LinkedIn](https://linkedin.com/in/devcodesadi)
