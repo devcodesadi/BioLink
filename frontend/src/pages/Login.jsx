@@ -45,7 +45,7 @@ function Login() {
           {/* Error Message */}
           {error && (
             <p className="bg-red-100 text-red-700 p-3 rounded-lg mb-4">
-              {error}
+              {error.data.message}
             </p>
           )}
 

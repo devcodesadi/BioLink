@@ -22,7 +22,7 @@ app.use(express.static(frontendPath));
 
 app.use(
   cors({
-    origin: ["http://localhost:5173","https://biolink-v7u6.onrender.com"],
+    origin: ["http://localhost:5173","https://biolink-v7u6.onrender.com","http://localhost:3000"],
     credentials: true,
   })
 );
